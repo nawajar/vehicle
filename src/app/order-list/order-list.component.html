@@ -1,4 +1,50 @@
-
 <div class="order-list-conatiner">
-  {{ orderList }}
+  <table class="order-table">
+    <thead>
+      <th>index</th>
+      <th>id</th>
+      <th>name</th>
+      <th>order date</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orderList; let i = index">
+        <td>{{i}}</td>
+        <td>{{order?.id}}</td>
+        <td>{{order?.name}}</td>
+        <td>{{order?.amount}}</td>
+        <td>{{order?.orderDate | date: 'dd-MM-yyyy HH:mm:ss': 'UTC+7'}}</td>
+        <td><button (click)="selectRow(i)"></button></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+       Sammary: {{ summaryTable }}
+      </tr>
+    </tfoot>
+  </table>
+
+
+  <div class="input-form">
+    <form [formGroup]="form">
+      <div class="input-group">
+        <div class="label">first name: </div>
+        <div class="value">
+          <input type="text" formControlName="firstName" />
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="label">last name: </div>
+        <div class="value">
+          <input type="text" formControlName="lastName" />
+          <div class="error-message" *ngIf="form?.controls?.lastName?.touched
+            && form?.controls?.lastName?.errors?.required">
+            lastname is required
+          </div>
+        </div>
+      </div>
+      <button (click)="submitForm()" [disabled]="form?.invalid">SUBMIT</button>
+
+      {{ form.valid }}
+    </form>
+  </div>
 </div>

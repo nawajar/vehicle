@@ -1,4 +1,22 @@
-
 .order-list-conatiner {
+  .order-table {
+    border: 1px solid;
+    color: #000;
+    table >tr , td{
+      color: #000;
+    }
+  }
 
+  .input-form {
+    .input-group {
+      .label {
+        padding-right: 5px;
+      }
+      .error-message {
+        font-size: 5px;
+        color: red;
+      }
+      display: inline-flex;
+    }
+  }
 }
